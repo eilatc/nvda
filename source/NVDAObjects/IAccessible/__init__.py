@@ -1,5 +1,5 @@
 # A part of NonVisual Desktop Access (NVDA)
-# Copyright (C) 2006-2026 NV Access Limited, Babbage B.V., Cyrille Bougot, Leonard de Ruijter, Christopher Proß
+# Copyright (C) 2006-2026 NV Access Limited, Babbage B.V., Cyrille Bougot, Leonard de Ruijter, Christopher Proß, eilatc
 # This file may be used under the terms of the GNU General Public License, version 2 or later, as modified by the NVDA license.
 # For full terms and any additional permissions, see the NVDA license file: https://github.com/nvaccess/nvda/blob/master/copying.txt
 
@@ -890,6 +890,19 @@ class IAccessible(Window):
 		else:
 			return False
 		return True
+
+	focusEventDelay: int
+	"""Type info for auto property: _get_focusEventDelay"""
+
+	def _get_focusEventDelay(self) -> int:
+		"""How long to wait before handling a focus event for this object.
+		If focus moves to another object during this time, the focus event for this object is dropped.
+		This is useful when an application briefly reports focus on a fallback object,
+		such as a document whose focused descendant was just removed,
+		before reporting focus on the object that should really have it.
+		:return: The delay in milliseconds, or 0 to handle the focus event immediately.
+		"""
+		return 0
 
 	def _get_shouldAllowIAccessibleMenuStartEvent(self) -> bool:
 		"""Determine whether an IAccessible menu start or menu popup start event should be allowed
